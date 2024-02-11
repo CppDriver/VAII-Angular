@@ -1,0 +1,65 @@
+<div class="body-content">
+    <div class="image-main-wrapper">
+        <img class="image-main" [src]="imageUrl">
+    </div>
+    <div class="page">
+        <div fxLayout.gt-sm="row">
+            <div class="left" fxFlex.gt-sm="55%">
+                
+                <h1 *ngIf="!editing" class="title">{{this.currentImageData.title}}</h1>
+                <input *ngIf="editing" class="edit-title title" [(ngModel)]="editImageData.title">
+                <div class="uploader">
+                    <span>
+                        <img class="user-img" [src]="uploaderImgUrl" routerLink="../../user/{{this.currentImageData.username}}">
+                    </span>
+                    <span>
+                        <a routerLink="../../user/{{this.currentImageData.username}}">    
+                            {{ this.currentImageData.username }}
+                        </a>
+                    </span>
+                </div>
+                <div *ngIf="isOwner()">
+                    <div *ngIf="!editing">
+                        <button mat-raised-button class="edit-btn btn" (click)="enableEdit()">Edit</button>
+                        <button mat-raised-button class="delete-btn btn" (click)="deleteMedia()">Delete</button>
+                    </div>
+                    <div *ngIf="editing">
+                        <button mat-raised-button class="save-btn btn" (click)="saveEdit()">Save</button>
+                        <button mat-raised-button class="cancel-btn btn" (click)="cancelEdit()">Cancel</button>
+                        </div>
+                </div>
+                <p class="label">Uploaded</p>
+                <p class="stats-label">{{this.currentImageData.dateCreated | date:'dd. MM. yyyy'}}</p>
+                <p class="font-bold font15">Description:</p>
+                <p *ngIf="!editing" class="font15">{{this.currentImageData.description}}</p>
+                <textarea *ngIf="editing" [(ngModel)]="editImageData.description" class="edit-description"></textarea>
+                <p class="font15"></p>
+                <app-comments [mediaUuid]="currentImageData.uuid"></app-comments>
+            </div>
+            <div class="right" fxFlex.gt-sm="45%">
+                <div *ngIf="!editing">
+                    <span *ngFor="let tag of currentImageData.tags" class="tag">{{tag}}</span>
+                </div>
+                <div *ngIf="editing" class="tags-container">
+                    <span *ngFor="let tag of editImageData.tags" class="edit-tag tag" (click)="removeTag(tag)">{{tag}}</span>
+                    <input *ngIf="editing" class="new-tag" [(ngModel)]="newTag" (keyup.enter)="addTag()" placeholder="add tag">
+                </div>
+                <div *ngIf="!editing">
+                    <p class="font-bold font20 ml10">This photo is in {{currentImageData.galleries.length == 0 ? 'no' : currentImageData.galleries.length}} {{currentImageData.galleries.length > 1 ? 'galleries' : 'gallery'}}:</p>
+                    <app-gallery-list [galleriesList]="currentImageData.galleries"></app-gallery-list>
+                </div>
+                <div *ngIf="editing">
+                    <p class="font-bold font20 ml10">This photo is in {{currentImageData.galleries.length == 0 ? 'no' : currentImageData.galleries.length}} {{currentImageData.galleries.length > 1 ? 'galleries' : 'gallery'}}:</p>
+                    <app-gallery-list [galleriesList]="editImageData.galleries"></app-gallery-list>
+                </div>
+                <p class="font-bold font20 ml10">Add to gallery:</p>
+                <mat-select mat- *ngIf="newGalleries.length > 0" [(ngModel)]="selectedGallery" (selectionChange)="addGallery($event.value)">
+                    <mat-option *ngFor="let gal of newGalleries" [value]="gal">{{ gal.title }}</mat-option>
+                </mat-select>
+                <div *ngIf="newGalleries.length == 0">
+                    <p class="ml10 font15">No galleries to add to, create one first.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

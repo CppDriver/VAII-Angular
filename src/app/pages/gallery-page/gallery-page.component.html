@@ -1,0 +1,37 @@
+<div class="body-content">
+    <div class="page">
+        <h2 *ngIf="!editing" class="title">{{gallery.title}}</h2>
+        <input *ngIf="editing" class="edit-title title" [(ngModel)]="editGalleryTitle">
+        <p *ngIf="!editing" class="font15">{{gallery.description}}</p>
+        <textarea *ngIf="editing" [(ngModel)]="editGalleryDescription" class="edit-description"></textarea>
+        <div fxLayout="row" fxLayoutAlign.gt-xs="center center">
+            <div fxFlex.gt-xs="70px" fxLayoutAlign="center center">
+                <img class="profile-image" [src]="profileImgUrl" (click)="redirectToUser()">
+            </div>
+            <div fxFlex.gt-xs="grow" fxLayout="column" fxLayoutAlign.gt-xs="center start" fxLayoutAlign.xs="center center">
+                <div class="name" (click)="redirectToUser()">{{gallery.username}}</div>
+            </div>
+            <div fxLayout.gt-xs="column" fxLayout.xs="row" fxFlex.gt-xs="100px" fxLayoutAlign.gt-xs="center end" fxLayoutAlign.xs="center center">
+                <button mat-button class="edit-btn btn" *ngIf="isOwner() && !editing" (click)="enableEdit()" >Edit gallery</button>
+                <button mat-button class="delete-btn btn" *ngIf="isOwner() && !editing" (click)="deleteGallery()">Delete gallery</button>
+                <button mat-button class="save-btn btn" *ngIf="isOwner() && editing" (click)="saveEdit()">Save</button>
+                <button mat-button class="cancel-btn btn" *ngIf="isOwner() && editing" (click)="cancelEdit()">Cancel</button>
+            </div>
+        </div>
+
+        <mat-tab-group dynamicHeight>
+            <mat-tab label="Uploaded photos">
+                <br>
+                <app-photo-grid></app-photo-grid>
+            </mat-tab>
+            <mat-tab label="Comments">
+                <br>
+                <div class="comments-container">
+                    <span>
+                        <app-comments [galleryId]="gallery.galleryId"></app-comments>
+                    </span>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>

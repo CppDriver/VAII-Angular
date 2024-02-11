@@ -1,0 +1,53 @@
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.field {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.description-form-field {
+    height: 10em;
+}
+
+.dialog-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 20px;
+    width: 300px;
+}
+
+.description-form-field textarea {
+    width: 100%;
+    height: 6em;
+    resize: none;
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.btn-success {
+    background-color: var(--primary-accent);
+    color: white;
+}
+
+@media (min-width: 768px) {
+    .dialog-container {
+        width: 400px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .dialog-container {
+        width: 500px;
+    }
+}

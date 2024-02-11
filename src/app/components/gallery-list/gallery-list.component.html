@@ -1,0 +1,16 @@
+<div>
+    <div class="gallery-grid">
+        <div class="gallery-item" *ngFor="let gallery of galleriesList; index as i" [routerLink]="'/gallery/'+gallery.galleryId">
+            <div class="gallery-image">
+                <img *ngIf="!noThumbnail[i]" [src]="'http://localhost:5080/gallery/getThumbnails/'+gallery.galleryId+'/'+1" (error)="noThumbnail[i] = true" alt="Gallery Image">
+                <div *ngIf="noThumbnail[i]" class="no-thumbnail-icon-container">
+                    <mat-icon>image</mat-icon>
+                </div>
+            </div>
+            <div>
+                <p class="gallery-title">{{gallery.title}}</p>
+                <p class="label">{{gallery.mediaCount}} {{gallery.mediaCount > 1 ? "items" : "item"}}</p>
+            </div>
+        </div>
+    </div>
+</div>

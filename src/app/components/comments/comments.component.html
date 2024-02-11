@@ -1,0 +1,28 @@
+<div class="comments-container">
+    <div *ngFor="let comment of comments" class="comment">
+        <span>
+            <img class="user-img" [src]="'http://localhost:5080/user/getUserProfileImg/' + comment.userId">
+        </span>
+        <span class="comment-content">
+            <div class="comment-header">
+                <span>{{comment.username}}</span>
+                <span>{{comment.dateCreated | date:'dd.MM.yyyy HH:mm:ss'}}</span>
+            </div>
+            <div>
+                <span class="comment-text">{{comment.text}}</span>
+            </div>
+        </span>
+        
+    </div>
+    <div *ngIf="isLoggedIn()">
+        <textarea matInput [(ngModel)]="newComment" class="comment-input" placeholder="Add a comment" maxlength="2048"></textarea>
+        <div class="comment-button">
+            <button mat-raised-button color="primary" (click)="addComment()">Add comment</button>
+        </div>
+    </div>
+    <div *ngIf="!isLoggedIn()">
+        <a routerLink="/auth/login">Log in</a>
+        <span class="comment-login"> to comment</span>
+    </div>
+
+</div>

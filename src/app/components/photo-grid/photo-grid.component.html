@@ -1,0 +1,16 @@
+<div id="images-container" class="image-grid">
+    <div *ngFor="let row of imageViewData; let rowIndex = index; let last = last" class="image-row">
+        <div *ngFor="let img of imageViewData[rowIndex]; let imgIndex = index" class="image-container" [style.width.px]="imageViewData[rowIndex][imgIndex].width" [style.height.px]="imageViewData[rowIndex][imgIndex].height"> 
+            <img (load)="imageLoadedFlag[getImageIndex(rowIndex, imgIndex)]=true" loading="lazy" [routerLink]="['/media', images[getImageIndex(rowIndex, imgIndex)].uuid]" class="image" [src]="'http://localhost:5080/media/GetImage/'+images[getImageIndex(rowIndex, imgIndex)].uuid+'/sd'" alt="{{ images[getImageIndex(rowIndex, imgIndex)].uuid }}">
+            <img *ngIf="!imageLoadedFlag[getImageIndex(rowIndex, imgIndex)]" [routerLink]="['/media', images[getImageIndex(rowIndex, imgIndex)].uuid]" class="image" [src]="imageUrls[images[getImageIndex(rowIndex, imgIndex)].uuid]" alt="{{ images[getImageIndex(rowIndex, imgIndex)].uuid }}">
+            <div class="image-caption">
+                <p class="image-title">
+                    {{ images[getImageIndex(rowIndex, imgIndex)].title }}
+                </p>
+                <p class="image-uploader">
+                    {{ images[getImageIndex(rowIndex, imgIndex)].author }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

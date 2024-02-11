@@ -1,0 +1,93 @@
+.menu-button {
+  position: absolute;
+  top: 70px;
+  left: 5px;
+  z-index: 1000;
+}
+
+.user-page-button {
+  min-width: 150px;
+}
+
+.button-container-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sidenav-options {
+  padding-top: 110px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 300px;
+}
+
+.options {
+  display: block;
+  width: 300px;
+}
+
+.option-button {
+  font-size: 1.1em;
+  font-weight: 500;
+  width: 100%;
+  text-align: left;
+  padding: 15px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.profile-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.profile-image-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.mat-bio {
+  height: 12em;
+}
+
+.mat-bio textarea {
+  height: 8em;
+  resize: none;
+}
+
+.delete-warning {
+  font-size: 1.1em;
+  margin-bottom: 20px
+}
+
+mat-sidenav-container, mat-sidenav-content {
+  height: calc(100vh - 64px);
+}
+
+@media (max-width: 959px) {
+  .settings-view {
+    padding-top: 30px;
+  }
+}
+
+@media (min-width: 960px) {
+  .settings-view {
+    padding-top: 20px;
+  }
+  
+  .settings {
+    padding-left: 20px;
+  }
+}
+
+@media (max-width: 599px) {
+  mat-sidenav-container, mat-sidenav-content {
+    height: calc(100vh - 56px);
+  }
+}

@@ -1,0 +1,119 @@
+<button mat-icon-button (click)="sidenav.toggle()" class="menu-button" fxHide.gt-sm>
+  <mat-icon>menu</mat-icon>
+</button>
+<mat-sidenav-container class="body-content">
+  <mat-sidenav #sidenav mode="over" fixedInViewport="true" fxHide.gt-sm>
+    <div class="sidenav-options">
+      <h2>Account settings</h2>
+
+      <div>
+        <button class="option-button" (click)="selectedTabIndex = 0; closeSidenav()">Profile settings</button>
+      </div>
+      <div>
+        <button class="option-button" (click)="selectedTabIndex = 1; closeSidenav()">Change password</button>
+      </div>
+      <div>
+        <button class="option-button" (click)="selectedTabIndex = 2; closeSidenav()">Delete profile</button>
+      </div>
+    </div>
+  </mat-sidenav>
+  
+  <mat-sidenav-content class="page-narrow" (click)="closeSidenav()">
+    <div >
+      <div class="settings-view" fxLayout="row">
+        <div class="options" fxHide.lt-md fxFlex="30%">
+          <h2>Account settings</h2>
+          <div>
+            <button class="option-button" (click)="selectedTabIndex = 0">Profile settings</button>
+          </div>
+          <div>
+            <button class="option-button" (click)="selectedTabIndex = 1">Change password</button>
+          </div>
+          <div>
+            <button class="option-button" (click)="selectedTabIndex = 2">Delete profile</button>
+          </div>
+        </div>
+        <div class="settings" fxFlex.gt-sm="70%" fxFlex.lt-md="100%">
+
+          <!-- Change user profile data tab -->
+          <div *ngIf="selectedTabIndex == 0">
+            <h2>Profile settings</h2>
+            <div fxLayout.gt-xs="row">
+              <div fxFlex.gt-xs="250px" class="profile-image-container">
+                  <img class="profile-image" [src]="profileImgUrl" (click)="fileInput.click()">
+                  <input type="file" id="file" #fileInput (change)="updateProfileImg($event)" accept="image/*" hidden>
+              </div>
+              <div fxFlex="grow" fxLayout="column">
+                <mat-form-field class="full-width" title="username is not changeable">
+                  <mat-label>Username</mat-label>
+                  <input matInput [(ngModel)]="user.username" type="text" placeholder="Username" name="username" disabled>
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                  <mat-label>Name</mat-label>
+                  <input matInput [(ngModel)]="user.name" type="text" placeholder="Name" name="name">
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                  <mat-label>Surname</mat-label>
+                  <input matInput [(ngModel)]="user.surname" type="text" placeholder="Surname" name="surname">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div fxLayout="column">
+              <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput [(ngModel)]="user.email" type="email" placeholder="Email" name="email">
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Location</mat-label>
+                <input matInput [(ngModel)]="user.location" type="text" placeholder="Location" name="location">
+              </mat-form-field>
+              <mat-form-field class="mat-bio">
+                <mat-label>Bio</mat-label>
+                <textarea matInput [(ngModel)]="user.bio" placeholder="Bio" name="bio" maxlength="512"></textarea>
+              </mat-form-field>
+              <div class="button-container-end">
+                <button mat-button (click)="onUpdateUser()" class="btn-secondary user-page-button">Update changes</button>
+              </div>
+            </div>
+          </div>
+        
+          <!-- change password tab -->
+          <div *ngIf="selectedTabIndex == 1" class="">
+            <h2>Change password</h2>
+            <mat-form-field class="full-width">
+              <mat-label>Old Password</mat-label>
+              <input matInput [(ngModel)]="oldPassword" type="password" name="oldPassword">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>New Password</mat-label>
+              <input matInput [(ngModel)]="newPassword" type="password" name="newPassword">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>Old Password</mat-label>
+              <input matInput [(ngModel)]="repeatPassword" type="password" name="oldPassword">
+            </mat-form-field>
+            <div class="button-container-end">
+              <button mat-button (click)="onChangePassword()" class="btn-success user-page-button">Change Password</button>
+            </div>
+          </div>
+
+          <!-- delete account tab -->
+          <div *ngIf="selectedTabIndex == 2" class="">
+            <h2>Delete profile</h2>
+            <p class="delete-warning">
+              <strong class="warning">Warning:</strong> Deleting your profile is a permanent action and cannot be undone. All user data including uploaded media will be lost.
+            </p>
+            <mat-form-field id="deleteAccountPassword" visibility="colabsed" class="full-width">
+              <mat-label>Password</mat-label>
+              <input matInput [(ngModel)]="deletePassword" type="password" name="password">
+            </mat-form-field>
+            <div class="button-container-end">
+              <button mat-button (click)="onDeleteAccount()" class="btn-danger mt10 user-page-button">Delete Account</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

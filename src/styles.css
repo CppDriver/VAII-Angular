@@ -1,0 +1,190 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@100..900&display=swap');
+
+:root {
+    --primary-color: #69f0ae;
+    --primary-accent: #00e676;
+    --secondary-color: #ffac47;
+    --secondary-accent: #c89600;
+    --background-color: #d0d0d0;
+    --danger-color: #f44336;
+    --success-color: #4caf50;
+    --gray-text-color: #777777;
+    --text-color: #000000;
+}
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.login-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 70px);
+}
+
+.login-card {
+    padding: 10px;
+    border: 2px;
+    border-radius: 1%;
+    border-color: var(--primary-accent);
+    width: calc(30vw + 200px);
+}
+
+.input-field {
+    margin-top: 5px;
+}
+
+.input-field-label {
+    margin-bottom: 30px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+mat-card-header {
+    border-bottom-width: 3px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-color: var(--primary-accent);
+    border-bottom-style: solid;
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--primary-accent);
+}
+
+mat-card-title {
+    margin-bottom: 5px;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.width-half {
+    width: 50%;
+}
+
+.width-third {
+    width: 33.3%;
+}
+
+.button {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
+.font15 {
+    font-size: 15px;
+}
+
+.font20 {
+    font-size: 20px;
+}
+
+.label {
+    font-size: 0.9em;
+    color: var(--gray-text-color);
+    margin-bottom: 0.3em;
+    margin-top: 0.3em;
+}
+
+.stats-label {
+    font-size: 1.3em;
+    font-weight: 700;
+    margin-bottom: 0.3em;
+    margin-top: 0.3em;
+}
+
+.page {
+    margin: auto;
+    max-width: 1920px;
+    padding: 20px;
+}
+
+.page-narrow {
+    margin: auto;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+.ml10 {
+    margin-left: 10px;
+}
+
+.mt10 {
+    margin-top: 10px;
+}
+
+.mt50 {
+    margin-top: 50px;
+}
+
+.mt100 {
+    margin-top: 100px;
+}
+
+.pt20 {
+    padding-top: 20px;
+} 
+
+.full-width {
+    width: 100%;
+  }
+
+.body-content {
+    margin-top: 64px;
+}
+
+.mat-hint-error {
+    color: #f44336 !important;
+    font-family: 'Roboto Flex', sans-serif !important;
+}
+
+.mat-hint-success {
+    color: var(--success-color);
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.btn-success {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-secondary {
+    background-color: var(--secondary-accent);
+    color: white;
+}
+
+.warning {
+    color: var(--danger-color);
+}
+
+@media (max-width: 599px) {
+    .login-card {
+        width: 95%;
+    }
+
+    .body-content {
+        margin-top: 56px;
+    }
+}

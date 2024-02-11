@@ -1,0 +1,43 @@
+<button mat-icon-button (click)="fileInput.click()" class="add-button">
+    <mat-icon>add</mat-icon>
+</button>
+<div class="body-content">
+    <div class="page pt20">
+        <h2>Upload photos</h2>
+        <h4>Drop files anywhere on this page or click add button.</h4>
+        <input type="file" id="file" #fileInput (change)="onFileSelected($event)" accept="image/*" multiple hidden>
+        <div class="upload-container">
+            <div class="upload-item" *ngFor="let file of files">
+                <div class="thumbnail-container" (click)="toggleSelected(file[1])">
+                    <img class="thumbnail-image faded" [src]="fileUrls[file[1]]" draggable="false">
+                    <img id="{{file[1]}}" class="thumbnail-image original" [src]="fileUrls[file[1]]" alt="{{file[1]}}" draggable="false">
+                </div>
+                <div class="data-container">
+                    <input [(ngModel)]="fileData[file[1]].title" class="title-input" placeholder="title" maxLength="128">
+                    <div class="description-container">
+                        <textarea [(ngModel)]="fileData[file[1]].description" class="description-input" placeholder="description" maxlength="32768"></textarea>
+                    </div>
+                    <div class="flex-container">
+                        <span>{{ (fileUploadStates[file[1]] | async)?.[0] ?? "Undefined"}}</span>
+                        <span>{{ fileData[file[1]].width }} x {{ fileData[file[1]].height }}</span>
+                    </div>
+                    <div class="flex-container">
+                        <span class="upload-status">{{ ((fileUploadStates[file[1]]) | async)?.[2] ?? -1 | uploadStatus:file[0].size }}</span>
+                        <span class="flex-container">
+                            <span>
+                                <button class="square-button save-button" matTooltip="save" (click)="saveUpload(file)">
+                                    <mat-icon>check</mat-icon>
+                                </button>
+                            </span>
+                            <span>
+                                <button class="square-button cancel-button" matTooltip="cancel" (click)="cancelUpload(file)">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

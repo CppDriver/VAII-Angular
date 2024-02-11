@@ -1,0 +1,39 @@
+<div class="body-content">
+    <div class="page">
+        <div fxLayout.gt-xs="row" fyLayout.xs="column" fxLayoutAlign.gt-xs="center center">
+            <div fxFlex.gt-xs="170px" fxLayoutAlign="center center">
+                <img class="profile-image" [src]="profileImgUrl">
+            </div>
+            <div fxFlex.gt-xs="grow" fxLayout="column" fxLayoutAlign.gt-xs="center start" fxLayoutAlign.xs="center center">
+                <div class="name">{{user.name}} {{user.surname}}</div>
+                <div class="icon-text-line">
+                    <mat-icon>person</mat-icon>
+                    <span>{{user.username}}</span>
+                </div>
+                <div class="icon-text-line">
+                    <mat-icon>location_pin</mat-icon>
+                    <span>{{user.location}}</span>
+                </div>
+            </div>
+            <div fxFlex.gt-xs="100px" fxLayoutAlign="center end">
+                <button mat-button class="btn-secondary" *ngIf="isOwner()" routerLink="/settings">Edit profile</button>
+            </div>
+        </div>
+        <p>{{user.bio}}</p>
+
+        <mat-tab-group dynamicHeight>
+            <mat-tab label="Uploaded photos">
+                <br>
+                <app-photo-grid></app-photo-grid>
+            </mat-tab>
+            <mat-tab label="Galleries">
+                <div>
+                    <app-gallery-list [galleriesList]="galleries"></app-gallery-list>
+                    <div *ngIf="isOwner()" class="add-gallery" fxLayout="row" fxLayoutAlign="end">
+                        <button mat-button class="btn-success" (click)="openAddGalleryDialog()">Create new gallery</button>
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>

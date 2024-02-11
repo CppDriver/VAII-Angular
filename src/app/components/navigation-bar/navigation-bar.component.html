@@ -1,0 +1,13 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row">
+        <mat-icon routerLink="/">camera_roll</mat-icon>
+        <span class="app-title" routerLink="/">MultiMedia Library</span>
+        <button mat-button routerLink="/upload">Upload</button>
+        <span class="spacer"></span>
+        <!-- <mat-icon (click)="toggleTheme()" [title]="darkTheme ? 'switch to dark' : 'switch to light'">{{darkTheme ? 'dark_mode' : 'light_mode'}}</mat-icon> -->
+        <button *ngIf="!loggedIn" mat-button routerLink="/auth/login">Login</button>
+        <button *ngIf="!loggedIn" mat-button routerLink="/auth/signup">Sign up</button>
+        <button *ngIf="loggedIn" mat-button routerLink="/user/{{username}}">{{username}}</button>
+        <button *ngIf="loggedIn" mat-button (click)="onLogout()">Logout</button>
+    </mat-toolbar-row>
+</mat-toolbar>

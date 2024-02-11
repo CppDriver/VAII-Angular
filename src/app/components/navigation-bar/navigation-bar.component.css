@@ -1,0 +1,16 @@
+.spacer {
+    flex: 1 1 auto;
+  }
+
+.app-title {
+    font-size: 110%;
+    font-style: italic;
+}
+
+mat-toolbar {
+  box-shadow: 0px 5px 5px #536dfe80;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}

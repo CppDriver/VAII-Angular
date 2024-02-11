@@ -1,0 +1,84 @@
+h1 {
+    font-size: 200%;
+    font-family: monospace;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.image-grid {
+    padding: 0px;
+}
+
+.image-container {
+    padding: 0;
+    position: relative;
+}
+
+.image-caption {
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.3) 75%, rgba(0, 0, 0, 0) 100%);
+    width: 100%;
+    min-height: 4em;
+    color: #fff;
+    margin-bottom: 0;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+}
+
+.image-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 5px;
+}
+
+.image-row:last-child {
+    margin-bottom: 0;
+    justify-content: flex-start;
+    gap: 5px;
+}
+
+.image-container:hover .image-caption {
+    opacity: 1;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.image-title {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-top: 0.5em;
+    margin-bottom: 0;
+    margin-left: 15px;
+}
+
+.image-uploader {
+    font-size: 1em;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 0.5;
+    margin-left: 15px;
+}
+
+p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
